@@ -94,7 +94,16 @@ public class SinglyLinkedList {
         return value;
     }
 
-    // TODO - implement contains method
+    public boolean contains(int object) {
+        Node tempNode = head;
+        for (int i = 0; i < size; i++) {
+            if (tempNode.value == object) {
+                return true;
+            }
+            tempNode = tempNode.next;
+        }
+        return false;
+    }
 
     public void print() {
         if (head != null) {
