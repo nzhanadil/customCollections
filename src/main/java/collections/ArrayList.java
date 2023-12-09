@@ -43,6 +43,15 @@ public class ArrayList {
         return array[index];
     }
 
+    public int indexOf(int e) {
+        for (int i = 0; i < size; i++) {
+            if (array[i] == e) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public int remove(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + size);
