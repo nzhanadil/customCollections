@@ -66,6 +66,17 @@ public class SinglyLinkedList {
         return tempNode.value;
     }
 
+    public int indexOf(int e) {
+        Node tempNode = head;
+        for (int i = 0; i < size; i++) {
+            if(tempNode.value == e){
+                return i;
+            }
+            tempNode = tempNode.next;
+        }
+        return -1;
+    }
+
     public int remove(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + size);
