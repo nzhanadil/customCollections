@@ -4,9 +4,9 @@ import nodes.Node;
 
 public class SinglyLinkedList {
 
-    private Node head;
-    private Node tail;
-    private int size;
+    public Node head;
+    public Node tail;
+    public int size;
 
     public SinglyLinkedList() {
         size = 0;
