@@ -1,62 +1,67 @@
-package collections;
+package collections.linkedList;
 
-import nodes.Node;
+import nodes.DoublyNode;
 
-public class SinglyLinkedList {
+public class DoublyLinkedList {
 
-    private Node head;
-    private Node tail;
+    private DoublyNode head;
+    private DoublyNode tail;
     private int size;
 
-    public SinglyLinkedList() {
+    public DoublyLinkedList() {
         size = 0;
     }
 
     public void add(int e, int index) {
-        Node newNode = new Node();
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + size);
+        }
+        DoublyNode newNode = new DoublyNode();
         newNode.value = e;
 
         if (head == null) {
-            head = newNode;
-            tail = newNode;
+            head = tail = newNode;
         } else if (index == 0) {
             newNode.next = head;
+            head.prev = newNode;
             head = newNode;
-        } else if (index >= size) {
+        } else if (index == size - 1) {
             tail.next = newNode;
+            newNode.prev = tail;
             tail = newNode;
         } else {
-            Node tempNode = head;
+            DoublyNode tempNode = head;
             for (int i = 0; i < index - 1; i++) {
                 tempNode = tempNode.next;
             }
+
             newNode.next = tempNode.next;
+            newNode.next.prev = newNode;
+            newNode.prev = tempNode;
             tempNode.next = newNode;
         }
         size++;
     }
 
     public void add(int e) {
-        Node newNode = new Node();
+        DoublyNode newNode = new DoublyNode();
         newNode.value = e;
 
         if (head == null) {
-            head = newNode;
-            tail = newNode;
-            size = 1;
+            head = tail = newNode;
         } else {
             tail.next = newNode;
+            newNode.prev = tail;
             tail = newNode;
-            size++;
         }
+        size++;
     }
 
     public int get(int index) {
         if (index > size - 1 || index < 0) {
             throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + size);
         }
-
-        Node tempNode = head;
+        DoublyNode tempNode = head;
         for (int i = 0; i < index; i++) {
             tempNode = tempNode.next;
         }
@@ -64,7 +69,7 @@ public class SinglyLinkedList {
     }
 
     public int indexOf(int e) {
-        Node tempNode = head;
+        DoublyNode tempNode = head;
         for (int i = 0; i < size; i++) {
             if (tempNode.value == e) {
                 return i;
@@ -78,37 +83,36 @@ public class SinglyLinkedList {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + size);
         }
-        int value = -1;
+
+        int value = 0;
 
         if (size == 1) {
-            tail = head = null;
+            value = head.value;
+            head = tail = null;
         } else if (index == 0) {
             value = head.value;
+            head.next.prev = null;
             head = head.next;
         } else if (index == size - 1) {
-            Node tempNode = head;
-            for (int i = 0; i < index - 1; i++) {
-                tempNode = tempNode.next;
-            }
-            value = tempNode.next.value;
-            tempNode.next = null;
-            tail = tempNode;
+            tail.prev.next = null;
+            tail = tail.prev;
         } else {
-            Node tempNode = head;
+            DoublyNode tempNode = head;
             for (int i = 0; i < index - 1; i++) {
                 tempNode = tempNode.next;
             }
-            value = tempNode.next.value;
+
             tempNode.next = tempNode.next.next;
+            tempNode.next.prev = tempNode;
         }
         size--;
         return value;
     }
 
-    public boolean contains(int object) {
-        Node tempNode = head;
+    public boolean contains(int e) {
+        DoublyNode tempNode = head;
         for (int i = 0; i < size; i++) {
-            if (tempNode.value == object) {
+            if (tempNode.value == e) {
                 return true;
             }
             tempNode = tempNode.next;
@@ -118,8 +122,8 @@ public class SinglyLinkedList {
 
     public void print() {
         if (head != null) {
+            DoublyNode tempNode = head;
             System.out.print("[");
-            Node tempNode = head;
             for (int i = 0; i < size; i++) {
                 System.out.print(tempNode.value);
                 if (i != size - 1) {
@@ -132,8 +136,29 @@ public class SinglyLinkedList {
         }
     }
 
+    public void reversedPrint() {
+        if (head != null) {
+            DoublyNode tempNode = tail;
+            System.out.print("[");
+            for (int i = 0; i < size; i++) {
+                System.out.print(tempNode.value);
+                if (i != size - 1) {
+                    System.out.print(", ");
+                }
+                tempNode = tempNode.prev;
+            }
+            System.out.print("]");
+            System.out.println();
+        }
+    }
+
     public void delete() {
         if (head != null) {
+            DoublyNode tempNode = head;
+            for (int i = 0; i < size; i++) {
+                tempNode.prev = null;
+                tempNode = tempNode.next;
+            }
             head = tail = null;
             size = 0;
         }
