@@ -6,27 +6,27 @@ public class StackWithLL {
 
     SinglyLinkedList ll;
 
-    public StackWithLL(){
+    public StackWithLL() {
         ll = new SinglyLinkedList();
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return ll.head == null;
     }
 
-    public void push(int e){
+    public void push(int e) {
         ll.add(e, 0);
     }
 
-    public int pop(){
+    public int pop() {
         return ll.remove(0);
     }
 
-    public int peek(){
+    public int peek() {
         return ll.get(0);
     }
 
-    public void delete(){
+    public void delete() {
         ll.delete();
     }
 }
