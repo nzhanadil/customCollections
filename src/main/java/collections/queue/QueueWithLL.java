@@ -6,27 +6,27 @@ public class QueueWithLL {
 
     SinglyLinkedList sll;
 
-    public QueueWithLL(){
+    public QueueWithLL() {
         this.sll = new SinglyLinkedList();
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return sll.head == null;
     }
 
-    public void enqueue(int e){
+    public void enqueue(int e) {
         sll.add(e, 0);
     }
 
-    public int dequeue(){
+    public int dequeue() {
         return sll.remove(0);
     }
 
-    public int peek(){
+    public int peek() {
         return sll.get(0);
     }
 
-    public void delete(){
+    public void delete() {
         sll.delete();
     }
 }
