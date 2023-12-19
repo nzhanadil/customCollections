@@ -7,7 +7,4 @@ public class BinaryNode {
     public BinaryNode right;
     public int height;
 
-
-
-
 }
