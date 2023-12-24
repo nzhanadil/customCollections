@@ -174,5 +174,10 @@ public class BinaryTreeLL {
         }
     }
 
+    // Delete Binary Tree
+    public void deleteBT() {
+        root = null;
+    }
+
 
 }
