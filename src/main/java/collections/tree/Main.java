@@ -1,9 +1,6 @@
 package collections.tree;
 
-import com.sun.source.tree.Tree;
 import nodes.BinaryNode;
-
-import java.util.TreeMap;
 
 public class Main {
 
@@ -63,7 +60,6 @@ public class Main {
         binaryTree.levelOrder();
 
         System.out.println(binaryTree.contains("N4"));
-
 
         binaryTree.add("yoyo");
         binaryTree.levelOrder();
